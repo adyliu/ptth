@@ -84,7 +84,7 @@ public class Response {
      * 随机生成文件名称
      * 
      * @return 具体的文件路径
-     * @throws IOException
+     * @throws IOException 文件下乳失败
      */
     public File asFile() throws IOException {
         File file = File.createTempFile(UUID.randomUUID().toString(), "");

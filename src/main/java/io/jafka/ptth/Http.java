@@ -63,6 +63,7 @@ public class Http {
 
     /**
      * 关闭连接池
+     * @throws IOException 如果关闭连接池失败
      */
     public static synchronized void shutdown() throws IOException {
         if (_httpClient != null) {
@@ -91,8 +92,8 @@ public class Http {
      * @return 响应结果
      * @throws IOException
      *             任何IO异常
-     * @see {@link Request}
-     * @see {@link Response}
+     * @see Request
+     * @see Response
      */
     public static Response execute(Request req) throws IOException {
         HttpRequestBase method;

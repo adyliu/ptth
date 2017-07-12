@@ -109,25 +109,55 @@ public class Request {
         return removeHeader(HttpHeaders.USER_AGENT).addHeaders(HttpHeaders.USER_AGENT, userAgent);
     }
 
-    /** 使用Chrome浏览器模拟 */
+    /**
+     * 使用Chrome浏览器模拟
+     * 
+     * @return 当前请求对象
+     */
     public Request setUserAgent() {
         return setUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.62 Safari/537.36");
     }
 
+    /**
+     * 设置请求的字符编码
+     * 
+     * @param encoding
+     *            字符编码
+     * @return 当前请求对象
+     */
     public Request setEncoding(Charset encoding) {
         this.encoding = encoding;
         return this;
     }
 
+    /**
+     * 设置HTTP请求的方法
+     * 
+     * @param method
+     *            GET/POST/HTTP/PUT/DELET
+     * @return 当前请求对象
+     */
     public Request setMethod(String method) {
         this.method = method;
         return this;
     }
 
+    /**
+     * HTTP请求的上下文参数
+     * 
+     * @return 上下文参数
+     */
     public HttpClientContext getHttpContext() {
         return this.httpContext;
     }
 
+    /**
+     * 添加HTTP的Header
+     * 
+     * @param headers
+     *            header的name和value，需要成双入对
+     * @return 当前请求对象
+     */
     public Request addHeaders(String... headers) {
         if (headers.length % 2 != 0) {
             throw new IllegalArgumentException("error headers. " + Arrays.toString(headers));
@@ -138,6 +168,13 @@ public class Request {
         return this;
     }
 
+    /**
+     * 添加HTTP的header
+     * 
+     * @param headers
+     *            请求的header
+     * @return 当前请求对象
+     */
     public Request addHeaders(Header... headers) {
         for (Header header : headers) {
             this.headers.add(header);
@@ -356,6 +393,14 @@ public class Request {
      *            cookie名称filem
      * @param value
      *            cookie值
+     * @param domain
+     *            域名地址
+     * @param path
+     *            cookie路径
+     * @param expiryDate
+     *            过期时间
+     * @param version
+     *            版本
      * @return 请求对象
      */
     public Request addCookie(String name, String value, String domain, String path, Date expiryDate, int version) {
@@ -404,6 +449,7 @@ public class Request {
      * 生成调试信息（包括HEADER/BODY等）
      * 
      * @return HTTP请求的调试信息
+     * @throws IOException 编码参数错误
      */
     public String toDebugString() throws IOException {
         StringBuilder buf = new StringBuilder(1024);
@@ -427,7 +473,10 @@ public class Request {
 
     final static String localSiteAddress = _calcAllLocalSiteAddress();
 
-    /** 获取本机的全部私有IP地址 */
+    /**
+     * 获取本机的全部私有IP地址
+     * @return 本机全部私有IP地址
+     */
     public String getLocalsiteaddress() {
         return localSiteAddress;
     }
@@ -464,4 +513,3 @@ public class Request {
         return addrs.length() > 0 ? addrs.substring(1) : "unknown";
     }
 }
-
