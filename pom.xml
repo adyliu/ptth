@@ -5,6 +5,7 @@
   <artifactId>ptth</artifactId>
   <version>1.0</version>
   <name>ptth</name>
+  <url>https://github.com/adyliu/ptth</url>
   <description>a simple http client</description>
   <scm>
     <connection>scm:git:git@github.com:adyliu/ptth.git</connection>
